@@ -19,12 +19,6 @@
             height: 350px;
             width: 100%;
         }
-        .donut-chart-container {
-            position: relative;
-            height: 150px;
-            width: 150px;
-            margin: auto;
-        }
         .gradient-header {
             background: linear-gradient(90deg, #1e3a8a 0%, #0d9488 100%);
         }
@@ -77,7 +71,7 @@
         <!-- Home Section -->
         <section id="home" class="text-center py-16">
              <img src="https://dkhblpxugaxynqqiqdbn.supabase.co/storage/v1/object/public/logo//20210726_085953%20(1).jpg" alt="Foto Profil Mokhammad Daffa Aditya Ridwan" class="w-36 h-48 mx-auto mb-6 rounded-xl shadow-2xl object-cover ring-4 ring-teal-200" onerror="this.onerror=null; this.src='https://placehold.co/144x192/cccccc/ffffff?text=Foto+3x4';">
-            <h1 class="text-3xl md:text-5xl font-extrabold mb-4 text-transparent bg-clip-text gradient-header">Pengaruh Aditif Ampas Jamu Terhadap Kualitas Eksternal Telur</h1>
+            <h1 class="text-3xl md:text-5xl font-extrabold mb-4 text-transparent bg-clip-text gradient-header">Pengaruh Penambahan Ampas Jamu Bentuk Tepung dan Cair Sebagai Aditif Pakan Terhadap Kualitas Eksternal Telur Ayam Ras Petelur</h1>
             <p class="text-lg text-gray-700 mb-2">Penelitian oleh: <strong>Mokhammad Daffa Aditya Ridwan dan Osfar Sjofjan</strong></p>
             <p class="text-md text-gray-500">Program Studi Peternakan, Fakultas Peternakan, Universitas Brawijaya</p>
         </section>
@@ -174,6 +168,10 @@
                     <div class="chart-container">
                         <canvas id="beratTelurChart"></canvas>
                     </div>
+                    <div class="mt-4 text-gray-700 text-justify leading-relaxed">
+                        <h4 class="font-semibold text-lg">Pembahasan:</h4>
+                        <p>Peningkatan berat telur tertinggi pada perlakuan 0,5% aditif tepung (P2T1) menunjukkan bahwa bentuk tepung lebih unggul dalam pelepasan nutrisi secara bertahap. Hal ini memungkinkan penyerapan protein yang lebih optimal, yang merupakan komponen utama dalam pembentukan albumen dan kuning telur. Efektivitas pada level 0,5% mengindikasikan adanya dosis optimal, di mana level yang lebih tinggi tidak selalu memberikan hasil yang lebih baik.</p>
+                    </div>
                 </div>
 
                 <!-- Card Tebal Kerabang -->
@@ -183,36 +181,36 @@
                     <div class="chart-container">
                         <canvas id="tebalKerabangChart"></canvas>
                     </div>
+                     <div class="mt-4 text-gray-700 text-justify leading-relaxed">
+                        <h4 class="font-semibold text-lg">Pembahasan:</h4>
+                        <p>Hasil terbaik untuk tebal kerabang pada perlakuan 0,75% aditif cair (P3T2) dapat dijelaskan oleh bioavailabilitas mineral yang lebih tinggi. Bentuk cair memungkinkan penyerapan kalsium dan fosfor yang lebih cepat dan efisien di saluran pencernaan. Peningkatan penyerapan mineral ini secara langsung mendukung proses kalsifikasi kerabang, sehingga menghasilkan kerabang yang lebih tebal dan kuat.</p>
+                    </div>
                 </div>
             </div>
             
-            <!-- Non-significant results -->
-             <div class="bg-white p-8 rounded-xl shadow-lg card-hover">
-                 <h3 class="text-2xl font-bold mb-2 text-center">Parameter Tanpa Perbedaan Nyata</h3>
-                 <p class="text-center text-gray-600 mb-8">Faktor genetik dan fisiologis ayam lebih dominan pada parameter berikut (P>0,05).</p>
-                 <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
-                    <div class="text-center">
-                        <h4 class="font-semibold text-lg mb-2">Panjang Telur</h4>
-                        <div class="donut-chart-container"><canvas id="panjangChart"></canvas></div>
-                        <p class="text-xl font-bold text-gray-700 mt-2">~58.55 <span class="text-sm font-normal">mm</span></p>
+            <!-- Non-significant results with Charts -->
+            <div class="bg-white p-8 rounded-xl shadow-lg card-hover">
+                <h3 class="text-2xl font-bold mb-2 text-center">Grafik Hasil Tanpa Perbedaan Nyata</h3>
+                <p class="text-center text-gray-600 mb-8">Perbandingan rata-rata antara bentuk aditif Tepung dan Cair di setiap level perlakuan (P>0,05).</p>
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                    <div class="w-full">
+                        <h4 class="text-center font-semibold mb-2">Grafik Rata-rata Panjang Telur (mm)</h4>
+                        <div class="chart-container"><canvas id="panjangTelurChart"></canvas></div>
                     </div>
-                     <div class="text-center">
-                        <h4 class="font-semibold text-lg mb-2">Lebar Telur</h4>
-                        <div class="donut-chart-container"><canvas id="lebarChart"></canvas></div>
-                        <p class="text-xl font-bold text-gray-700 mt-2">~45.22 <span class="text-sm font-normal">mm</span></p>
+                    <div class="w-full">
+                        <h4 class="text-center font-semibold mb-2">Grafik Rata-rata Lebar Telur (mm)</h4>
+                        <div class="chart-container"><canvas id="lebarTelurChart"></canvas></div>
                     </div>
-                     <div class="text-center">
-                        <h4 class="font-semibold text-lg mb-2">Indeks Telur</h4>
-                        <div class="donut-chart-container"><canvas id="indeksChart"></canvas></div>
-                        <p class="text-xl font-bold text-gray-700 mt-2">~77.31 <span class="text-sm font-normal">%</span></p>
+                    <div class="w-full">
+                        <h4 class="text-center font-semibold mb-2">Grafik Rata-rata Indeks Telur (%)</h4>
+                        <div class="chart-container"><canvas id="indeksTelurChart"></canvas></div>
                     </div>
-                     <div class="text-center">
-                        <h4 class="font-semibold text-lg mb-2">Gravitasi Telur</h4>
-                        <div class="donut-chart-container"><canvas id="gravitasiChart"></canvas></div>
-                        <p class="text-xl font-bold text-gray-700 mt-2">~1.055 <span class="text-sm font-normal">g/ml</span></p>
+                    <div class="w-full">
+                        <h4 class="text-center font-semibold mb-2">Grafik Rata-rata Gravitasi (g/ml)</h4>
+                        <div class="chart-container"><canvas id="gravitasiTelurChart"></canvas></div>
                     </div>
-                 </div>
-             </div>
+                </div>
+            </div>
 
         </section>
 
@@ -250,7 +248,7 @@
         const tepungBorder = 'rgba(37, 99, 235, 1)';
         const cairBorder = 'rgba(5, 150, 105, 1)';
 
-        // --- Data for Bar Charts ---
+        // --- Data for Significant Bar Charts ---
         const beratTepung = [64.98, 67.36, 70.33, 67.05];
         const beratCair = [63.44, 65.18, 67.93, 69.28];
         const notasiBerat = ['ab', 'bc', 'c', 'bc', 'a', 'ab', 'bc', 'c'];
@@ -259,7 +257,18 @@
         const tebalCair = [0.451, 0.454, 0.444, 0.487];
         const notasiTebal = ['bc', 'ab', 'bc', 'abc', 'ab', 'ab', 'a', 'c'];
 
-        const barChartOptions = (yAxisTitle, min) => ({
+        // --- Data for Non-Significant Bar Charts ---
+        const panjangTepung = [58.29, 58.38, 60.07, 58.78];
+        const panjangCair = [57.02, 58.25, 58.94, 58.67];
+        const lebarTepung = [44.72, 45.33, 45.93, 45.54];
+        const lebarCair = [44.29, 44.49, 45.27, 46.19];
+        const indeksTepung = [76.77, 77.69, 76.49, 77.47];
+        const indeksCair = [77.72, 76.37, 76.81, 79.13];
+        const gravitasiTepung = [1.056, 1.055, 1.056, 1.054];
+        const gravitasiCair = [1.056, 1.054, 1.056, 1.056];
+
+
+        const barChartOptions = (yAxisTitle, min, notasiArray = null) => ({
             responsive: true,
             maintainAspectRatio: false,
             plugins: {
@@ -270,15 +279,14 @@
                     callbacks: {
                         label: function(context) {
                             let value = context.raw;
-                            let notation = '';
+                            // If no notation array is provided, just show the value
+                            if (!notasiArray) {
+                                return `Rata-rata: ${value}`;
+                            }
+                            // Logic for significant charts with notation
                             const datasetIndex = context.datasetIndex; // 0 for Tepung, 1 for Cair
                             const dataIndex = context.dataIndex;
-                            const notasiArray = yAxisTitle.includes('Berat') ? notasiBerat : notasiTebal;
-                            if (datasetIndex === 0) { // Tepung
-                                notation = notasiArray[dataIndex];
-                            } else { // Cair
-                                notation = notasiArray[dataIndex + 4];
-                            }
+                            const notation = notasiArray[datasetIndex === 0 ? dataIndex : dataIndex + 4];
                             return `Rata-rata: ${value} (${notation})`;
                         }
                     }
@@ -294,61 +302,61 @@
             },
         });
 
-        // --- Chart 1: Berat Telur ---
-        const ctxBerat = document.getElementById('beratTelurChart').getContext('2d');
-        new Chart(ctxBerat, {
+        // --- Initialize Significant Charts ---
+        new Chart(document.getElementById('beratTelurChart').getContext('2d'), {
             type: 'bar',
-            data: {
-                labels: labels,
-                datasets: [
-                    { label: 'Bentuk Tepung (g)', data: beratTepung, backgroundColor: tepungColor, borderColor: tepungBorder, borderWidth: 1, borderRadius: 5 },
-                    { label: 'Bentuk Cair (g)', data: beratCair, backgroundColor: cairColor, borderColor: cairBorder, borderWidth: 1, borderRadius: 5 }
-                ]
-            },
-            options: barChartOptions('Berat Telur (g)', 60)
+            data: { labels: labels, datasets: [
+                { label: 'Bentuk Tepung (g)', data: beratTepung, backgroundColor: tepungColor, borderColor: tepungBorder, borderWidth: 1, borderRadius: 5 },
+                { label: 'Bentuk Cair (g)', data: beratCair, backgroundColor: cairColor, borderColor: cairBorder, borderWidth: 1, borderRadius: 5 }
+            ]},
+            options: barChartOptions('Berat Telur (g)', 60, notasiBerat)
         });
 
-        // --- Chart 2: Tebal Kerabang ---
-        const ctxTebal = document.getElementById('tebalKerabangChart').getContext('2d');
-        new Chart(ctxTebal, {
+        new Chart(document.getElementById('tebalKerabangChart').getContext('2d'), {
             type: 'bar',
-            data: {
-                labels: labels,
-                datasets: [
-                    { label: 'Bentuk Tepung (mm)', data: tebalTepung, backgroundColor: tepungColor, borderColor: tepungBorder, borderWidth: 1, borderRadius: 5 },
-                    { label: 'Bentuk Cair (mm)', data: tebalCair, backgroundColor: cairColor, borderColor: cairBorder, borderWidth: 1, borderRadius: 5 }
-                ]
-            },
-            options: barChartOptions('Tebal Kerabang (mm)', 0.43)
+            data: { labels: labels, datasets: [
+                { label: 'Bentuk Tepung (mm)', data: tebalTepung, backgroundColor: tepungColor, borderColor: tepungBorder, borderWidth: 1, borderRadius: 5 },
+                { label: 'Bentuk Cair (mm)', data: tebalCair, backgroundColor: cairColor, borderColor: cairBorder, borderWidth: 1, borderRadius: 5 }
+            ]},
+            options: barChartOptions('Tebal Kerabang (mm)', 0.43, notasiTebal)
         });
 
-        // --- Donut Charts ---
-        const donutOptions = {
-            responsive: true,
-            maintainAspectRatio: false,
-            cutout: '65%',
-            plugins: { legend: { display: false }, tooltip: { enabled: false } }
-        };
+        // --- Initialize Non-Significant Charts ---
+        new Chart(document.getElementById('panjangTelurChart').getContext('2d'), {
+            type: 'bar',
+            data: { labels: labels, datasets: [
+                { label: 'Tepung (mm)', data: panjangTepung, backgroundColor: tepungColor, borderRadius: 5 },
+                { label: 'Cair (mm)', data: panjangCair, backgroundColor: cairColor, borderRadius: 5 }
+            ]},
+            options: barChartOptions('Panjang Telur (mm)', 55)
+        });
 
-        const createDonutChart = (ctx, data, color) => {
-            new Chart(ctx, {
-                type: 'doughnut',
-                data: {
-                    datasets: [{
-                        data: data,
-                        backgroundColor: [color, '#e5e7eb'],
-                        borderWidth: 0,
-                    }]
-                },
-                options: donutOptions
-            });
-        };
-        
-        // Data for Donut charts (normalized to 100 for visualization)
-        createDonutChart(document.getElementById('panjangChart').getContext('2d'), [90, 10], '#3b82f6'); // Blue
-        createDonutChart(document.getElementById('lebarChart').getContext('2d'), [85, 15], '#10b981'); // Green
-        createDonutChart(document.getElementById('indeksChart').getContext('2d'), [77, 23], '#f97316'); // Orange
-        createDonutChart(document.getElementById('gravitasiChart').getContext('2d'), [80, 20], '#8b5cf6'); // Violet
+        new Chart(document.getElementById('lebarTelurChart').getContext('2d'), {
+            type: 'bar',
+            data: { labels: labels, datasets: [
+                { label: 'Tepung (mm)', data: lebarTepung, backgroundColor: tepungColor, borderRadius: 5 },
+                { label: 'Cair (mm)', data: lebarCair, backgroundColor: cairColor, borderRadius: 5 }
+            ]},
+            options: barChartOptions('Lebar Telur (mm)', 43)
+        });
+
+        new Chart(document.getElementById('indeksTelurChart').getContext('2d'), {
+            type: 'bar',
+            data: { labels: labels, datasets: [
+                { label: 'Tepung (%)', data: indeksTepung, backgroundColor: tepungColor, borderRadius: 5 },
+                { label: 'Cair (%)', data: indeksCair, backgroundColor: cairColor, borderRadius: 5 }
+            ]},
+            options: barChartOptions('Indeks Telur (%)', 74)
+        });
+
+        new Chart(document.getElementById('gravitasiTelurChart').getContext('2d'), {
+            type: 'bar',
+            data: { labels: labels, datasets: [
+                { label: 'Tepung (g/ml)', data: gravitasiTepung, backgroundColor: tepungColor, borderRadius: 5 },
+                { label: 'Cair (g/ml)', data: gravitasiCair, backgroundColor: cairColor, borderRadius: 5 }
+            ]},
+            options: barChartOptions('Gravitasi (g/ml)', 1.052)
+        });
 
     </script>
 </body>
