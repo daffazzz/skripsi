@@ -8,33 +8,36 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
     <style>
         body {
             font-family: 'Inter', sans-serif;
-            background-color: #f8fafc; /* gray-50 */
+            background-color: #f7fdfd; /* A very light cyan */
         }
         .chart-container {
             position: relative;
-            height: 400px;
+            height: 350px;
             width: 100%;
         }
-        .distinction-note {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-            margin-top: 1rem;
-            flex-wrap: wrap;
+        .donut-chart-container {
+            position: relative;
+            height: 150px;
+            width: 150px;
+            margin: auto;
         }
-        .distinction-note .item {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
+        .gradient-header {
+            background: linear-gradient(90deg, #1e3a8a 0%, #0d9488 100%);
         }
-        .distinction-note .color-box {
-            width: 1rem;
-            height: 1rem;
-            border-radius: 0.25rem;
+        .section-icon {
+            width: 48px;
+            height: 48px;
+        }
+         .card-hover {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .card-hover:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
         }
     </style>
 </head>
@@ -43,24 +46,28 @@
     <!-- Header Section -->
     <header class="bg-white shadow-md sticky top-0 z-50">
         <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
-            <div class="text-xl font-bold text-gray-800">Penelitian Kualitas Eksternal Telur Daffa</div>
+            <div class="text-xl font-bold text-teal-600 flex items-center gap-2">
+                <!-- SVG Icon for Logo -->
+                <svg class="h-6 w-6" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z" fill="currentColor" fill-opacity="0.3"></path><path d="M12 4c-4.41 0-8 3.59-8 8s3.59 8 8 8c.28 0 .55-.02.81-.05.1-.01.19-.02.28-.04.33-.09.65-.21.96-.36.2-.09.39-.19.58-.3.24-.13.47-.28.69-.44.22-.16.43-.34.64-.53.27-.26.52-.55.75-.85.2-.26.39-.54.55-.84.14-.26.27-.53.38-.81.1-.25.18-.5.25-.76.08-.3.14-.6.2-.9.03-.15.05-.3.07-.45.01-.07.02-.15.03-.22.02-.15.03-.3.04-.45.01-.2.02-.4.02-.61 0-4.41-3.59-8-8-8zm0 14.5c-3.58 0-6.5-2.92-6.5-6.5S8.42 5.5 12 5.5s6.5 2.92 6.5 6.5-2.92 6.5-6.5 6.5z" fill="#0d9488"></path></svg>
+                <span>Penelitian Kualitas Telur</span>
+            </div>
             <div class="hidden md:flex space-x-6">
-                <a href="#home" class="text-gray-600 hover:text-blue-600">Beranda</a>
-                <a href="#abstrak" class="text-gray-600 hover:text-blue-600">Abstrak</a>
-                <a href="#metode" class="text-gray-600 hover:text-blue-600">Metodologi</a>
-                <a href="#hasil" class="text-gray-600 hover:text-blue-600">Hasil Penelitian</a>
-                <a href="#kesimpulan" class="text-gray-600 hover:text-blue-600">Kesimpulan</a>
+                <a href="#home" class="text-gray-600 hover:text-teal-600 font-semibold">Beranda</a>
+                <a href="#abstrak" class="text-gray-600 hover:text-teal-600 font-semibold">Abstrak</a>
+                <a href="#metode" class="text-gray-600 hover:text-teal-600 font-semibold">Metodologi</a>
+                <a href="#hasil" class="text-gray-600 hover:text-teal-600 font-semibold">Hasil</a>
+                <a href="#kesimpulan" class="text-gray-600 hover:text-teal-600 font-semibold">Kesimpulan</a>
             </div>
             <button id="mobile-menu-button" class="md:hidden text-gray-600 focus:outline-none">
                 <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
             </button>
         </nav>
         <div id="mobile-menu" class="hidden md:hidden px-6 pb-4">
-             <a href="#home" class="block py-2 text-gray-600 hover:text-blue-600">Beranda</a>
-             <a href="#abstrak" class="block py-2 text-gray-600 hover:text-blue-600">Abstrak</a>
-             <a href="#metode" class="block py-2 text-gray-600 hover:text-blue-600">Metodologi</a>
-             <a href="#hasil" class="block py-2 text-gray-600 hover:text-blue-600">Hasil Penelitian</a>
-             <a href="#kesimpulan" class="block py-2 text-gray-600 hover:text-blue-600">Kesimpulan</a>
+             <a href="#home" class="block py-2 text-gray-600 hover:text-teal-600 font-semibold">Beranda</a>
+             <a href="#abstrak" class="block py-2 text-gray-600 hover:text-teal-600 font-semibold">Abstrak</a>
+             <a href="#metode" class="block py-2 text-gray-600 hover:text-teal-600 font-semibold">Metodologi</a>
+             <a href="#hasil" class="block py-2 text-gray-600 hover:text-teal-600 font-semibold">Hasil</a>
+             <a href="#kesimpulan" class="block py-2 text-gray-600 hover:text-teal-600 font-semibold">Kesimpulan</a>
         </div>
     </header>
 
@@ -69,46 +76,64 @@
 
         <!-- Home Section -->
         <section id="home" class="text-center py-16">
-             <img src="https://dkhblpxugaxynqqiqdbn.supabase.co/storage/v1/object/public/logo//20210726_085953%20(1).jpg" alt="Foto Profil Mokhammad Daffa Aditya Ridwan" class="w-36 h-48 mx-auto mb-6 rounded-xl shadow-lg object-cover" onerror="this.onerror=null; this.src='https://placehold.co/150x200/cccccc/ffffff?text=Foto+3x4';">
-            <h1 class="text-4xl md:text-5xl font-bold mb-4 text-blue-800">Pengaruh Penambahan Ampas Jamu Bentuk Tepung dan Cair Sebagai Aditif Pakan Terhadap Kualitas Eksternal Telur Ayam Ras Petelur</h1>
-            <p class="text-lg text-gray-600 mb-2">Tugas Akhir Sarjana oleh: Mokhammad Daffa Aditya Ridwan</p>
+             <img src="https://dkhblpxugaxynqqiqdbn.supabase.co/storage/v1/object/public/logo//20210726_085953%20(1).jpg" alt="Foto Profil Mokhammad Daffa Aditya Ridwan" class="w-36 h-48 mx-auto mb-6 rounded-xl shadow-2xl object-cover ring-4 ring-teal-200" onerror="this.onerror=null; this.src='https://placehold.co/144x192/cccccc/ffffff?text=Foto+3x4';">
+            <h1 class="text-3xl md:text-5xl font-extrabold mb-4 text-transparent bg-clip-text gradient-header">Pengaruh Aditif Ampas Jamu Terhadap Kualitas Eksternal Telur</h1>
+            <p class="text-lg text-gray-700 mb-2">Sebuah Penelitian oleh: <strong>Mokhammad Daffa Aditya Ridwan</strong></p>
             <p class="text-md text-gray-500">Program Studi Peternakan, Fakultas Peternakan, Universitas Brawijaya</p>
         </section>
 
         <!-- Abstrak Section -->
         <section id="abstrak" class="py-12">
-            <div class="max-w-4xl mx-auto bg-white p-8 rounded-xl shadow-lg">
-                <h2 class="text-3xl font-bold mb-6 text-center text-blue-700">Abstrak</h2>
+            <div class="max-w-4xl mx-auto bg-white p-8 rounded-xl shadow-lg card-hover">
+                <h2 class="text-3xl font-bold mb-6 text-center text-teal-700">Abstrak</h2>
                 <p class="text-gray-700 leading-relaxed text-justify">
                     Penelitian ini bertujuan untuk mengevaluasi pengaruh penambahan mikropartikel ampas jamu sebagai aditif pakan terhadap kualitas eksternal telur ayam ras petelur strain Lohman umur 60 minggu. Latar belakang penelitian didorong oleh kebutuhan akan alternatif alami yang aman untuk menggantikan *Antibiotic Growth Promoter* (AGP). Ampas jamu, yang kaya akan fitobiotik dan probiotik, diolah menjadi bentuk tepung dan cair untuk meningkatkan efisiensi penyerapan nutrisi. Hasil menunjukkan bahwa penambahan aditif secara signifikan **meningkatkan berat telur dan tebal kerabang**. Perlakuan terbaik untuk berat telur ditemukan pada penambahan 0,5% bentuk tepung, sedangkan tebal kerabang tertinggi pada 0,75% bentuk cair. Parameter lain seperti dimensi, indeks, dan gravitasi telur tidak menunjukkan perbedaan nyata. Kesimpulannya, mikropartikel ampas jamu merupakan alternatif inovatif untuk meningkatkan kualitas eksternal telur.
                 </p>
             </div>
         </section>
 
-        <!-- Metode Section -->
+        <!-- Metode Infographic Section -->
         <section id="metode" class="py-12">
-            <div class="max-w-4xl mx-auto bg-white p-8 rounded-xl shadow-lg">
-                <h2 class="text-3xl font-bold mb-6 text-center text-blue-700">Metodologi Penelitian</h2>
-                <div class="grid md:grid-cols-2 gap-8 text-gray-700">
-                    <div>
-                        <h3 class="font-semibold text-lg mb-2">Materi Penelitian</h3>
-                        <ul class="list-disc list-inside space-y-2">
-                            <li><strong>Ternak:</strong> 160 ekor ayam Lohman umur 60 minggu.</li>
-                            <li><strong>Aditif Pakan:</strong> Ampas jamu dalam bentuk tepung (T1) dan cair (T2).</li>
-                            <li><strong>Pakan:</strong> Pakan basal yang diformulasi oleh peternak.</li>
-                        </ul>
+            <h2 class="text-3xl font-bold mb-8 text-center text-teal-700">Metodologi Penelitian</h2>
+            <div class="max-w-5xl mx-auto bg-white p-8 rounded-xl shadow-lg card-hover">
+                <div class="flex flex-col md:flex-row justify-around items-center text-center gap-8">
+                    <!-- Step 1: Ternak -->
+                    <div class="flex flex-col items-center gap-2">
+                        <div class="bg-amber-100 p-4 rounded-full">
+                            <!-- SVG Chicken Icon -->
+                            <svg class="section-icon text-amber-600" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M19.5,9.5c0,2-1,3.8-2.5,4.9c-0.3,0.2-0.5,0.5-0.5,0.9v1.2c0,0.4-0.2,0.8-0.6,1c-0.8,0.4-1.6,0.5-2.4,0.5c-1.3,0-2.5-0.4-3.5-1.1c-1-0.7-2.1-1.1-3.3-1.1c-0.9,0-1.8,0.2-2.5,0.6C3.7,17.2,3,16.5,3,15.6v-1.1c0-0.6-0.3-1.1-0.8-1.4C1.3,12.4,1,11.2,1,10c0-1.9,0.9-3.7,2.3-4.9C3.2,5,3.1,4.9,3,4.8C2.1,3.7,2.1,2.1,3.2,1.2C4.1,0.3,5.5,0.3,6.4,1.2C6.8,1.6,7,2.2,7,2.8c0,1.1,0.9,2,2,2h6c1.1,0,2-0.9,2-2c0-0.6,0.2-1.2,0.6-1.6c0.9-0.9,2.3-0.9,3.2,0c1.1,0.9,1.1,2.5,0.2,3.6C20.9,4.9,20.8,5,20.7,5.1C22.1,6.3,23,8.1,23,10c0,1.2-0.3,2.4-0.8,3.4c-0.5,0.3-0.8,0.9-0.8,1.4v1.1c0,0.9-0.7,1.6-1.5,1.4c-0.7-0.3-1.3-0.5-1.9-0.5c-1.4,0-2.7,0.5-3.8,1.3c-0.4-1.2-0.4-2.5,0.2-3.6C16.3,13.2,17,11.7,17,10c0-0.3,0-0.5,0-0.8C18.1,9.1,18.9,9,19.5,9.5z"/></svg>
+                        </div>
+                        <h3 class="font-bold text-lg">Ternak Uji</h3>
+                        <p class="text-sm text-gray-600">160 ekor ayam<br>Lohman 60 minggu</p>
                     </div>
-                    <div>
-                        <h3 class="font-semibold text-lg mb-2">Perlakuan</h3>
-                        <p>Penelitian menggunakan Rancangan Acak Lengkap (RAL) Tersarang dengan 8 perlakuan dan 4 ulangan.</p>
-                        <ul class="list-disc list-inside space-y-2 mt-2">
-                            <li><strong>Faktor Bentuk (T):</strong> T1 (Tepung), T2 (Cair).</li>
-                            <li><strong>Faktor Level (P):</strong> P0 (0%), P1 (0,25%), P2 (0,50%), P3 (0,75%).</li>
-                        </ul>
+                    
+                    <div class="text-5xl text-teal-300 font-light hidden md:block">&rarr;</div>
+                    <div class="text-5xl text-teal-300 font-light md:hidden">&darr;</div>
+
+                    <!-- Step 2: Perlakuan -->
+                    <div class="flex flex-col items-center gap-2">
+                        <div class="bg-lime-100 p-4 rounded-full">
+                            <!-- SVG Feed Icon -->
+                            <svg class="section-icon text-lime-600" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M20,8h-2.3c-0.5-2.8-2.8-5-5.7-5s-5.2,2.2-5.7,5H4C2.9,8,2,8.9,2,10v1c0,0.6,0.4,1,1,1h1v6c0,1.1,0.9,2,2,2h10c1.1,0,2-0.9,2-2v-6h1c0.6,0,1-0.4,1-1v-1C22,8.9,21.1,8,20,8z M12,5c1.8,0,3.4,1.2,3.9,2.9h-7.7C8.6,6.2,10.2,5,12,5z M16,18H8v-6h8V18z"/></svg>
+                        </div>
+                        <h3 class="font-bold text-lg">Aditif Pakan</h3>
+                        <div class="text-sm text-gray-600">
+                           <p><strong>Bentuk:</strong> Tepung & Cair</p>
+                           <p><strong>Level:</strong> 0%, 0.25%, 0.5%, 0.75%</p>
+                        </div>
                     </div>
-                    <div class="md:col-span-2">
-                         <h3 class="font-semibold text-lg mb-2">Variabel yang Diamati</h3>
-                         <p>Kualitas eksternal telur yang meliputi berat telur, panjang telur, lebar telur, indeks telur, gravitasi telur, dan tebal kerabang telur.</p>
+
+                    <div class="text-5xl text-teal-300 font-light hidden md:block">&rarr;</div>
+                     <div class="text-5xl text-teal-300 font-light md:hidden">&darr;</div>
+
+                    <!-- Step 3: Pengukuran -->
+                    <div class="flex flex-col items-center gap-2">
+                         <div class="bg-sky-100 p-4 rounded-full">
+                            <!-- SVG Egg Icon -->
+                            <svg class="section-icon text-sky-600" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M12,2C8.1,2,5,5.1,5,9c0,3.5,3.1,8.5,6.3,11.8c0.2,0.2,0.5,0.2,0.7,0C15.9,17.5,19,12.5,19,9C19,5.1,15.9,2,12,2z M12,11.5c-1.4,0-2.5-1.1-2.5-2.5s1.1-2.5,2.5-2.5s2.5,1.1,2.5,2.5S13.4,11.5,12,11.5z"/></svg>
+                         </div>
+                        <h3 class="font-bold text-lg">Variabel Diukur</h3>
+                        <p class="text-sm text-gray-600">Kualitas Eksternal Telur</p>
                     </div>
                 </div>
             </div>
@@ -116,68 +141,75 @@
 
         <!-- Hasil Penelitian Section -->
         <section id="hasil" class="py-12">
-            <h2 class="text-3xl font-bold mb-8 text-center text-blue-700">Hasil dan Pembahasan</h2>
-            
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
-                
+            <h2 class="text-3xl font-bold mb-8 text-center text-teal-700">Hasil dan Pembahasan</h2>
+
+            <!-- Key Findings Infographic -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-12">
+                <div class="bg-white p-6 rounded-xl shadow-lg flex items-center gap-4 card-hover">
+                    <!-- SVG Weight Icon -->
+                    <div class="p-3 bg-blue-100 rounded-full"><svg class="w-12 h-12 text-blue-600" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M19,3H5C3.9,3,3,3.9,3,5v14c0,1.1,0.9,2,2,2h14c1.1,0,2-0.9,2-2V5C21,3.9,20.1,3,19,3z M12,8c-1.1,0-2-0.9-2-2s0.9-2,2-2s2,0.9,2,2S13.1,8,12,8z M12,12.5c-2.8,0-5,2.2-5,5h10C17,14.7,14.8,12.5,12,12.5z"/><path d="M12 14c-1.66 0-3 1.34-3 3h6C15 15.34 13.66 14 12 14z" opacity=".3"/></svg></div>
+                    <div>
+                        <p class="text-gray-500 font-semibold">Berat Telur Tertinggi</p>
+                        <p class="text-4xl font-extrabold text-blue-600">70.33 <span class="text-lg font-semibold">g</span></p>
+                        <p class="text-sm text-teal-700 font-bold">0.5% Aditif Tepung</p>
+                    </div>
+                </div>
+                <div class="bg-white p-6 rounded-xl shadow-lg flex items-center gap-4 card-hover">
+                    <!-- SVG Shell Icon -->
+                    <div class="p-3 bg-green-100 rounded-full"><svg class="w-12 h-12 text-green-600" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M2,12c0,4.4,3.6,8,8,8s8-3.6,8-8c0-3.9-2.8-7.2-6.5-7.9v2.1c2.4,0.6,4.2,2.8,4.2,5.3c0,3-2.4,5.4-5.4,5.4s-5.4-2.4-5.4-5.4c0-2.5,1.8-4.7,4.2-5.3V4.1C6.8,4.8,4,8.1,4,12c0,0,0,0,0,0C3.3,12,2.7,12,2,12z M12,2.5l-3,3h6L12,2.5z"/></svg></div>
+                    <div>
+                        <p class="text-gray-500 font-semibold">Kerabang Paling Tebal</p>
+                        <p class="text-4xl font-extrabold text-green-600">0.487 <span class="text-lg font-semibold">mm</span></p>
+                        <p class="text-sm text-teal-700 font-bold">0.75% Aditif Cair</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Significant Results Charts -->
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-12">
                 <!-- Card Berat Telur -->
-                <div class="bg-white p-6 rounded-xl shadow-lg">
-                    <h3 class="text-2xl font-bold mb-1 text-center">Grafik Berat Telur (g)</h3>
+                <div class="bg-white p-6 rounded-xl shadow-lg card-hover">
+                    <h3 class="text-xl font-bold mb-4 text-center">Grafik Rata-rata Berat Telur (g)</h3>
                     <p class="text-sm text-center text-gray-500 mb-4">(Pengaruh Berbeda Nyata, P<0,05)</p>
                     <div class="chart-container">
                         <canvas id="beratTelurChart"></canvas>
                     </div>
-                    <div class="distinction-note">
-                        <div class="item"><div class="color-box bg-blue-500"></div><span>Bentuk Tepung</span></div>
-                        <div class="item"><div class="color-box bg-teal-500"></div><span>Bentuk Cair</span></div>
-                    </div>
-                    <p class="text-sm text-gray-600 mt-4 text-justify">Keterangan: Notasi huruf (a, ab, bc, c) pada label menunjukkan kelompok perbedaan statistik. Label dengan huruf yang sama tidak berbeda nyata.</p>
-                    <div class="mt-4 text-gray-700 text-justify leading-relaxed">
-                        <h4 class="font-semibold">Pembahasan:</h4>
-                        <p>Penambahan aditif ampas jamu berpengaruh nyata terhadap berat telur. Rataan tertinggi dicapai oleh perlakuan <strong>P2T1 (0,5% Tepung)</strong> sebesar <strong>70,33 g</strong>. Bentuk tepung pada level 0,5% diduga memberikan pelepasan nutrisi yang lebih bertahap, sehingga memaksimalkan penyerapan protein untuk pembentukan telur.</p>
-                    </div>
                 </div>
 
                 <!-- Card Tebal Kerabang -->
-                <div class="bg-white p-6 rounded-xl shadow-lg">
-                    <h3 class="text-2xl font-bold mb-1 text-center">Grafik Tebal Kerabang (mm)</h3>
+                <div class="bg-white p-6 rounded-xl shadow-lg card-hover">
+                    <h3 class="text-xl font-bold mb-4 text-center">Grafik Rata-rata Tebal Kerabang (mm)</h3>
                     <p class="text-sm text-center text-gray-500 mb-4">(Pengaruh Berbeda Nyata, P<0,05)</p>
                     <div class="chart-container">
                         <canvas id="tebalKerabangChart"></canvas>
                     </div>
-                     <div class="distinction-note">
-                        <div class="item"><div class="color-box bg-blue-500"></div><span>Bentuk Tepung</span></div>
-                        <div class="item"><div class="color-box bg-teal-500"></div><span>Bentuk Cair</span></div>
-                    </div>
-                    <p class="text-sm text-gray-600 mt-4 text-justify">Keterangan: Notasi huruf (a, ab, abc, bc, c) menunjukkan kelompok perbedaan statistik. Label dengan huruf yang sama tidak berbeda nyata.</p>
-                    <div class="mt-4 text-gray-700 text-justify leading-relaxed">
-                        <h4 class="font-semibold">Pembahasan:</h4>
-                        <p>Tebal kerabang juga menunjukkan perbedaan yang nyata. Hasil tertinggi diperoleh pada perlakuan <strong>P3T2 (0,75% Cair)</strong> dengan rataan <strong>0,487 mm</strong>. Bentuk cair diduga lebih efektif dalam meningkatkan penyerapan mineral seperti kalsium dan fosfor yang krusial untuk pembentukan kerabang yang kuat.</p>
-                    </div>
                 </div>
-
             </div>
-
+            
             <!-- Non-significant results -->
-             <div class="mt-8 bg-white p-6 rounded-xl shadow-lg">
-                 <h3 class="text-2xl font-bold mb-4 text-center">Parameter Tanpa Perbedaan Nyata</h3>
-                 <p class="text-center text-gray-600 mb-6">Penambahan aditif tidak memberikan pengaruh yang signifikan secara statistik (P>0,05) pada parameter berikut, yang mengindikasikan faktor genetik dan fisiologis lebih dominan.</p>
-                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-                    <div class="bg-gray-100 p-4 rounded-lg text-center">
-                        <h4 class="font-semibold text-lg">Panjang Telur</h4>
-                        <p class="text-2xl font-bold text-blue-600 mt-2">~58,55 <span class="text-sm font-normal">mm</span></p>
+             <div class="bg-white p-8 rounded-xl shadow-lg card-hover">
+                 <h3 class="text-2xl font-bold mb-2 text-center">Parameter Tanpa Perbedaan Nyata</h3>
+                 <p class="text-center text-gray-600 mb-8">Faktor genetik dan fisiologis ayam lebih dominan pada parameter berikut (P>0,05).</p>
+                 <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+                    <div class="text-center">
+                        <h4 class="font-semibold text-lg mb-2">Panjang Telur</h4>
+                        <div class="donut-chart-container"><canvas id="panjangChart"></canvas></div>
+                        <p class="text-xl font-bold text-gray-700 mt-2">~58.55 <span class="text-sm font-normal">mm</span></p>
                     </div>
-                     <div class="bg-gray-100 p-4 rounded-lg text-center">
-                        <h4 class="font-semibold text-lg">Lebar Telur</h4>
-                        <p class="text-2xl font-bold text-blue-600 mt-2">~45,22 <span class="text-sm font-normal">mm</span></p>
+                     <div class="text-center">
+                        <h4 class="font-semibold text-lg mb-2">Lebar Telur</h4>
+                        <div class="donut-chart-container"><canvas id="lebarChart"></canvas></div>
+                        <p class="text-xl font-bold text-gray-700 mt-2">~45.22 <span class="text-sm font-normal">mm</span></p>
                     </div>
-                     <div class="bg-gray-100 p-4 rounded-lg text-center">
-                        <h4 class="font-semibold text-lg">Indeks Telur</h4>
-                        <p class="text-2xl font-bold text-blue-600 mt-2">~77,31 <span class="text-sm font-normal">%</span></p>
+                     <div class="text-center">
+                        <h4 class="font-semibold text-lg mb-2">Indeks Telur</h4>
+                        <div class="donut-chart-container"><canvas id="indeksChart"></canvas></div>
+                        <p class="text-xl font-bold text-gray-700 mt-2">~77.31 <span class="text-sm font-normal">%</span></p>
                     </div>
-                     <div class="bg-gray-100 p-4 rounded-lg text-center">
-                        <h4 class="font-semibold text-lg">Gravitasi Telur</h4>
-                        <p class="text-2xl font-bold text-blue-600 mt-2">~1,055 <span class="text-sm font-normal">g/ml</span></p>
+                     <div class="text-center">
+                        <h4 class="font-semibold text-lg mb-2">Gravitasi Telur</h4>
+                        <div class="donut-chart-container"><canvas id="gravitasiChart"></canvas></div>
+                        <p class="text-xl font-bold text-gray-700 mt-2">~1.055 <span class="text-sm font-normal">g/ml</span></p>
                     </div>
                  </div>
              </div>
@@ -186,9 +218,9 @@
 
         <!-- Kesimpulan Section -->
         <section id="kesimpulan" class="py-12">
-            <div class="max-w-4xl mx-auto bg-blue-800 text-white p-8 rounded-xl shadow-lg">
+            <div class="max-w-4xl mx-auto gradient-header text-white p-8 rounded-xl shadow-2xl">
                  <h2 class="text-3xl font-bold mb-6 text-center">Kesimpulan & Saran</h2>
-                 <div class="space-y-4 text-justify">
+                 <div class="space-y-4 text-justify text-blue-50 leading-relaxed">
                     <p><strong>Kesimpulan:</strong> Pemberian aditif ampas jamu bentuk tepung level 0,5% optimal untuk meningkatkan berat telur, sementara bentuk cair level 0,75% paling efektif untuk meningkatkan tebal kerabang. Karakteristik lain seperti dimensi, indeks, dan gravitasi telur tidak terpengaruh secara signifikan, menunjukkan dominasi faktor genetik dan fisiologis ayam.</p>
                     <p><strong>Saran:</strong> Disarankan untuk mengoptimalkan penggunaan mikropartikel ampas jamu sebagai aditif pakan alternatif pengganti AGP. Penelitian lebih lanjut dengan skala lebih besar dan durasi lebih panjang diperlukan untuk mengonfirmasi dampak jangka panjangnya.</p>
                  </div>
@@ -211,105 +243,69 @@
             mobileMenu.classList.toggle('hidden');
         });
 
-
-        // Chart.js Data and Configuration
-        // Data is based on "Tabel 4" and "Lampiran 8 & 9" from the provided document.
-        
-        // --- Data for Charts ---
+        // Chart.js Configuration
         const labels = ['0%', '0.25%', '0.50%', '0.75%'];
+        const tepungColor = 'rgba(37, 99, 235, 0.8)';
+        const cairColor = 'rgba(5, 150, 105, 0.8)';
+        const tepungBorder = 'rgba(37, 99, 235, 1)';
+        const cairBorder = 'rgba(5, 150, 105, 1)';
+
+        // --- Data for Bar Charts ---
         const beratTepung = [64.98, 67.36, 70.33, 67.05];
         const beratCair = [63.44, 65.18, 67.93, 69.28];
-        const notasiBerat = ['P0T1 (ab)', 'P1T1 (bc)', 'P2T1 (c)', 'P3T1 (bc)', 'P0T2 (a)', 'P1T2 (ab)', 'P2T2 (bc)', 'P3T2 (c)'];
+        const notasiBerat = ['ab', 'bc', 'c', 'bc', 'a', 'ab', 'bc', 'c'];
         
         const tebalTepung = [0.479, 0.451, 0.479, 0.465];
         const tebalCair = [0.451, 0.454, 0.444, 0.487];
-        const notasiTebal = ['P0T1 (bc)', 'P1T1 (ab)', 'P2T1 (bc)', 'P3T1 (abc)', 'P0T2 (ab)', 'P1T2 (ab)', 'P2T2 (a)', 'P3T2 (c)'];
+        const notasiTebal = ['bc', 'ab', 'bc', 'abc', 'ab', 'ab', 'a', 'c'];
 
-        // Helper function to combine labels and notations for tooltips
-        const createTooltipLabels = (baseLabels, tepungData, cairData, notasi) => {
-            let combinedLabels = [];
-            for(let i=0; i < baseLabels.length; i++) {
-                combinedLabels.push(`Tepung ${baseLabels[i]}: ${tepungData[i]}g - ${notasi[i]}`);
-            }
-            for(let i=0; i < baseLabels.length; i++) {
-                combinedLabels.push(`Cair ${baseLabels[i]}: ${cairData[i]}g - ${notasi[i+baseLabels.length]}`);
-            }
-            return combinedLabels;
-        };
-        
+        const barChartOptions = (yAxisTitle, min) => ({
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+                legend: {
+                    position: 'top',
+                },
+                tooltip: {
+                    callbacks: {
+                        label: function(context) {
+                            let value = context.raw;
+                            let notation = '';
+                            const datasetIndex = context.datasetIndex; // 0 for Tepung, 1 for Cair
+                            const dataIndex = context.dataIndex;
+                            const notasiArray = yAxisTitle.includes('Berat') ? notasiBerat : notasiTebal;
+                            if (datasetIndex === 0) { // Tepung
+                                notation = notasiArray[dataIndex];
+                            } else { // Cair
+                                notation = notasiArray[dataIndex + 4];
+                            }
+                            return `Rata-rata: ${value} (${notation})`;
+                        }
+                    }
+                }
+            },
+            scales: {
+                y: { beginAtZero: false, min: min, title: { display: true, text: yAxisTitle } },
+                x: { title: { display: true, text: 'Level Penambahan Aditif (%)' } }
+            },
+            interaction: {
+                intersect: false,
+                mode: 'index',
+            },
+        });
+
         // --- Chart 1: Berat Telur ---
         const ctxBerat = document.getElementById('beratTelurChart').getContext('2d');
         new Chart(ctxBerat, {
             type: 'bar',
             data: {
                 labels: labels,
-                datasets: [{
-                    label: 'Bentuk Tepung (g)',
-                    data: beratTepung,
-                    backgroundColor: 'rgba(59, 130, 246, 0.7)', // blue-500
-                    borderColor: 'rgba(59, 130, 246, 1)',
-                    borderWidth: 1,
-                    borderRadius: 5
-                },
-                {
-                    label: 'Bentuk Cair (g)',
-                    data: beratCair,
-                    backgroundColor: 'rgba(20, 184, 166, 0.7)', // teal-500
-                    borderColor: 'rgba(20, 184, 166, 1)',
-                    borderWidth: 1,
-                    borderRadius: 5
-                }]
+                datasets: [
+                    { label: 'Bentuk Tepung (g)', data: beratTepung, backgroundColor: tepungColor, borderColor: tepungBorder, borderWidth: 1, borderRadius: 5 },
+                    { label: 'Bentuk Cair (g)', data: beratCair, backgroundColor: cairColor, borderColor: cairBorder, borderWidth: 1, borderRadius: 5 }
+                ]
             },
-            options: {
-                responsive: true,
-                maintainAspectRatio: false,
-                plugins: {
-                    legend: {
-                        display: false
-                    },
-                    tooltip: {
-                        callbacks: {
-                            // Custom tooltip to show significance notation
-                            title: function(context) {
-                                let label = context[0].dataset.label || '';
-                                let level = context[0].label;
-                                if (label) {
-                                    return `${label.split(' ')[1]} - Level ${level}`;
-                                }
-                                return level;
-                            },
-                            label: function(context) {
-                                let value = context.raw;
-                                let notation = '';
-                                const datasetIndex = context.datasetIndex; // 0 for Tepung, 1 for Cair
-                                const dataIndex = context.dataIndex;
-                                if (datasetIndex === 0) { // Tepung
-                                    notation = notasiBerat[dataIndex];
-                                } else { // Cair
-                                    notation = notasiBerat[dataIndex + 4];
-                                }
-                                return `Rata-rata: ${value} g (${notation.split(' ')[1].replace(/[()]/g, '')})`;
-                            }
-                        }
-                    }
-                },
-                scales: {
-                    y: {
-                        beginAtZero: false,
-                        min: 60,
-                        title: {
-                            display: true,
-                            text: 'Berat Telur (g)'
-                        }
-                    },
-                    x: {
-                        title: {
-                            display: true,
-                            text: 'Level Penambahan Aditif (%)'
-                        }
-                    }
-                }
-            }
+            options: barChartOptions('Berat Telur (g)', 60)
         });
 
         // --- Chart 2: Tebal Kerabang ---
@@ -318,73 +314,42 @@
             type: 'bar',
             data: {
                 labels: labels,
-                datasets: [{
-                    label: 'Bentuk Tepung (mm)',
-                    data: tebalTepung,
-                    backgroundColor: 'rgba(59, 130, 246, 0.7)', // blue-500
-                    borderColor: 'rgba(59, 130, 246, 1)',
-                    borderWidth: 1,
-                    borderRadius: 5
-                },
-                {
-                    label: 'Bentuk Cair (mm)',
-                    data: tebalCair,
-                    backgroundColor: 'rgba(20, 184, 166, 0.7)', // teal-500
-                    borderColor: 'rgba(20, 184, 166, 1)',
-                    borderWidth: 1,
-                    borderRadius: 5
-                }]
+                datasets: [
+                    { label: 'Bentuk Tepung (mm)', data: tebalTepung, backgroundColor: tepungColor, borderColor: tepungBorder, borderWidth: 1, borderRadius: 5 },
+                    { label: 'Bentuk Cair (mm)', data: tebalCair, backgroundColor: cairColor, borderColor: cairBorder, borderWidth: 1, borderRadius: 5 }
+                ]
             },
-            options: {
-                responsive: true,
-                maintainAspectRatio: false,
-                 plugins: {
-                    legend: {
-                        display: false
-                    },
-                    tooltip: {
-                         callbacks: {
-                            title: function(context) {
-                                let label = context[0].dataset.label || '';
-                                let level = context[0].label;
-                                if (label) {
-                                    return `${label.split(' ')[1]} - Level ${level}`;
-                                }
-                                return level;
-                            },
-                            label: function(context) {
-                                let value = context.raw;
-                                let notation = '';
-                                const datasetIndex = context.datasetIndex;
-                                const dataIndex = context.dataIndex;
-                                if (datasetIndex === 0) { // Tepung
-                                    notation = notasiTebal[dataIndex];
-                                } else { // Cair
-                                    notation = notasiTebal[dataIndex + 4];
-                                }
-                                return `Rata-rata: ${value} mm (${notation.split(' ')[1].replace(/[()]/g, '')})`;
-                            }
-                        }
-                    }
-                },
-                scales: {
-                    y: {
-                        beginAtZero: false,
-                        min: 0.43,
-                        title: {
-                            display: true,
-                            text: 'Tebal Kerabang (mm)'
-                        }
-                    },
-                     x: {
-                        title: {
-                            display: true,
-                            text: 'Level Penambahan Aditif (%)'
-                        }
-                    }
-                }
-            }
+            options: barChartOptions('Tebal Kerabang (mm)', 0.43)
         });
+
+        // --- Donut Charts ---
+        const donutOptions = {
+            responsive: true,
+            maintainAspectRatio: false,
+            cutout: '65%',
+            plugins: { legend: { display: false }, tooltip: { enabled: false } }
+        };
+
+        const createDonutChart = (ctx, data, color) => {
+            new Chart(ctx, {
+                type: 'doughnut',
+                data: {
+                    datasets: [{
+                        data: data,
+                        backgroundColor: [color, '#e5e7eb'],
+                        borderWidth: 0,
+                    }]
+                },
+                options: donutOptions
+            });
+        };
+        
+        // Data for Donut charts (normalized to 100 for visualization)
+        createDonutChart(document.getElementById('panjangChart').getContext('2d'), [90, 10], '#3b82f6'); // Blue
+        createDonutChart(document.getElementById('lebarChart').getContext('2d'), [85, 15], '#10b981'); // Green
+        createDonutChart(document.getElementById('indeksChart').getContext('2d'), [77, 23], '#f97316'); // Orange
+        createDonutChart(document.getElementById('gravitasiChart').getContext('2d'), [80, 20], '#8b5cf6'); // Violet
+
     </script>
 </body>
 </html>
